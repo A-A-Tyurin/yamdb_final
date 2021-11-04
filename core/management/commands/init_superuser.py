@@ -6,16 +6,16 @@ from django.core.management.base import BaseCommand
 
 User = get_user_model()
 
+EMAIL = os.environ.get('DJANGO_ADMIN_EMAIL')
+USERNAME = os.environ.get('DJANGO_ADMIN_USERNAME')
+PASSWORD = os.environ.get('DJANGO_ADMIN_PASSWORD')
+EXIT_MSG_PATTERN = 'The environment variable {} is empty./n'
+
 
 class Command(BaseCommand):
     help = 'Create superuser account from .env file'
 
     def handle(self, *args, **kwargs):
-        EMAIL = os.environ.get('DJANGO_ADMIN_EMAIL')
-        USERNAME = os.environ.get('DJANGO_ADMIN_USERNAME')
-        PASSWORD = os.environ.get('DJANGO_ADMIN_PASSWORD')
-        EXIT_MSG_PATTERN = 'The environment variable {} is empty./n'
-
         exit_msg = ''
 
         if EMAIL is None:
