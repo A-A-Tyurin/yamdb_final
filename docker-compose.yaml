@@ -9,9 +9,7 @@ services:
     env_file:
       - ./.env
   web:
-    build: .
-    expose:
-      - 8000
+    image: aatyurin/yamdb
     volumes:
       - static_value:/yamdb/static/
       - media_value:/yamdb/media/

@@ -23,3 +23,5 @@ sudo docker-compose up
 ```
 sudo docker-compose exec web python3 manage.py loaddata fixtures.json
 ```
+
+[![yamdb workflow](https://github.com/A-A-Tyurin/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)](https://github.com/A-A-Tyurin/yamdb_final/actions/workflows/yamdb_workflow.yml)
