@@ -62,9 +62,6 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd yamdb_final
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/yamdb:latest
-            sudo docker-compose stop
-            sudo docker-compose rm web
             touch .env 
             echo DB_ENGINE=${{ secrets.ENV_DB_ENGINE }} >> .env
             echo DB_NAME=${{ secrets.ENV_DB_NAME }} >> .env
@@ -75,6 +72,9 @@ jobs:
             echo DJANGO_ADMIN_EMAIL=${{ secrets.ENV_DJANGO_ADMIN_EMAIL }} >> .env
             echo DJANGO_ADMIN_USERNAME=${{ secrets.ENV_DJANGO_ADMIN_USERNAME }} >> .env
             echo DJANGO_ADMIN_PASSWORD=${{ secrets.ENV_DJANGO_ADMIN_PASSWORD }} >> .env
+            sudo docker-compose stop
+            sudo docker-compose rm web
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/yamdb:latest
             sudo docker-compose up -d
       
       # - name: Send telegram message
