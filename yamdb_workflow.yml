@@ -71,6 +71,9 @@ jobs:
             echo POSTGRES_PASSWORD=${{ secrets.YAMDB_POSTGRES_PASSWORD }} >> .env
             echo DB_HOST=${{ secrets.YAMDB_DB_HOST }} >> .env
             echo DB_PORT=${{ secrets.YAMDB_DB_PORT }} >> .env
+            echo DJANGO_ADMIN_EMAIL=${{ secrets.DJANGO_ADMIN_EMAIL }} >> .env
+            echo DJANGO_ADMIN_USERNAME=${{ secrets.DJANGO_ADMIN_USERNAME }} >> .env
+            echo DJANGO_ADMIN_PASSWORD=${{ secrets.DJANGO_ADMIN_PASSWORD }} >> .env
             sudo docker-compose up -d
       
       - name: Send telegram message
