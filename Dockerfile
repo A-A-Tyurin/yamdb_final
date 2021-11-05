@@ -5,5 +5,5 @@ RUN apk update \
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 COPY . .
-ENTRYPOINT ["/yamdb/entrypoint_web.sh"]
+# ENTRYPOINT ["/yamdb/entrypoint_web.sh"]
 CMD gunicorn api_yamdb.wsgi:application --bind 0.0.0.0:8000
