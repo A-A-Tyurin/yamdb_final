@@ -18,7 +18,7 @@ jobs:
         run: | 
           python -m pip install --upgrade pip
           pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort pytest pytest-django
-          pip install -r requirements.txt 
+          pip install -r requirements.txt
 
       - name: Run tests
         run: |
@@ -61,24 +61,28 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
+            cd yamdb_final
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/yamdb:latest
             sudo docker-compose stop
             sudo docker-compose rm web
             touch .env 
-            echo DB_ENGINE=${{ secrets.YAMDB_DB_ENGINE }} >> .env
-            echo DB_NAME=${{ secrets.YAMDB_DB_NAME }} >> .env
-            echo POSTGRES_USER=${{ secrets.YAMDB_POSTGRES_USER }} >> .env
-            echo POSTGRES_PASSWORD=${{ secrets.YAMDB_POSTGRES_PASSWORD }} >> .env
-            echo DB_HOST=${{ secrets.YAMDB_DB_HOST }} >> .env
-            echo DB_PORT=${{ secrets.YAMDB_DB_PORT }} >> .env
+            echo DB_ENGINE=${{ secrets.ENV_DB_ENGINE }} >> .env
+            echo DB_NAME=${{ secrets.ENV_DB_NAME }} >> .env
+            echo POSTGRES_USER=${{ secrets.ENV_POSTGRES_USER }} >> .env
+            echo POSTGRES_PASSWORD=${{ secrets.ENV_POSTGRES_PASSWORD }} >> .env
+            echo DB_HOST=${{ secrets.ENV_DB_HOST }} >> .env
+            echo DB_PORT=${{ secrets.ENV_DB_PORT }} >> .env
+            echo DJANGO_ADMIN_EMAIL=${{ secrets.ENV_DJANGO_ADMIN_EMAIL }} >> .env
+            echo DJANGO_ADMIN_USERNAME=${{ secrets.ENV_DJANGO_ADMIN_USERNAME }} >> .env
+            echo DJANGO_ADMIN_PASSWORD=${{ secrets.ENV_DJANGO_ADMIN_PASSWORD }} >> .env
             sudo docker-compose up -d
       
-      - name: Send telegram message
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            ${{ github.actor }} created commit
-            ${{ github.event.commits[0].message }}
-            https://github.com/${{ github.repository }}/commit/${{github.sha}}
+      # - name: Send telegram message
+      #   uses: appleboy/telegram-action@master
+      #   with:
+      #     to: ${{ secrets.TELEGRAM_TO }}
+      #     token: ${{ secrets.TELEGRAM_TOKEN }}
+      #     message: |
+      #       ${{ github.actor }} created commit
+      #       ${{ github.event.commits[0].message }}
+      #       https://github.com/${{ github.repository }}/commit/${{github.sha}}
