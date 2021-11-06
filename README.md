@@ -36,14 +36,10 @@ sudo docker-compose exec web python3 manage.py collectstatic --no-input
 sudo docker-compose exec web python3 manage.py loaddata fixtures.json
 ```
 
-Пример приложения доступен по адресу:
-```
-[http://178.154.254.253](http://178.154.254.253)
-```
+Приложение доступно по адресу:
+http://178.154.254.253
 
 Документация по API:
-```
-[http://178.154.254.253/redoc](http://178.154.254.253/redoc)
-```
+http://178.154.254.253/redoc
 
 [![yamdb workflow](https://github.com/A-A-Tyurin/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)](https://github.com/A-A-Tyurin/yamdb_final/actions/workflows/yamdb_workflow.yml)
