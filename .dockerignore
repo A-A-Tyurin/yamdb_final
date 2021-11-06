@@ -16,3 +16,4 @@ Dockerfile
 *.json
 *.yml
 *.yaml
+!redoc.yaml
